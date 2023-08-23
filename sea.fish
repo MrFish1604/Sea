@@ -45,8 +45,10 @@ function sea
         set -l name $argv[2]
         set -l fname (string lower $name)
         echo "Creating project $name"
-        mkdir -p $name
-        cd $name
+        if test "$name" != "$(basename $PWD)"
+            mkdir -p $name
+            cd $name
+        end
         set -l lang 'c'
         if set -q _flag_lang
             set lang $_flag_lang
