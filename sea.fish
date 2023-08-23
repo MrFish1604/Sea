@@ -37,6 +37,17 @@ function sea
             echo -e "#ifndef $(string upper $argv[2])_H\n#define $(string upper $argv[2])_H\n\n#endif" > $ipath
             echo -e "#include \"$argv[2].h\"\n" > $path
         end
+        if test -f "Makefile"
+            set -l content $(string split " " (cat "Makefile"))
+            if contains "bin:" $content
+                set -f output "\nbin/$argv[2].o: bin"
+            else
+                set -f output "\n$argv[2].o:"
+            end
+            set -a output "\n\t\$(CC) \$(CFLAGS) -c $path -o \$@"
+            echo $output
+            echo -e "$output" >> Makefile
+        end
     case 'new'
         if not argparse 'd/directories' 'H/header' 'g/git' 'l/lang=' 'c/compiler=' 'm/makefile' -- $argv or not $argv[2]
             sea help
