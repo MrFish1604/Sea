@@ -5,7 +5,7 @@ Simple fish script to manage C/C++ projects
 ```bash
 git clone https://github.com/MrFish1604/Sea.git
 cd Sea
-sh install.sh
+fish install.sh
 ```
 
 ## Usage
