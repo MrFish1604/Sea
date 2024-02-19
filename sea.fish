@@ -67,7 +67,7 @@ function sea
         if set -q _flag_compiler
             set -f compiler $_flag_compiler
         else
-            if test "$lang" = 'c++'
+            if test "$lang" = 'cpp' || test "$lang" = 'c++'
                 set -f compiler 'g++'
             else
                 set -f compiler 'gcc'
